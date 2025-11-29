@@ -495,7 +495,7 @@ const App = () => {
           </div>
           
           <div className="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
-            <p className="mb-2">&copy; 2025 {businessDetails.name}. All rights reserved.</p>
+            <p className="mb-2">&copy; {new Date().getFullYear()} {businessDetails.name}. All rights reserved.</p>
             <p>
               Website created by <a href="https://js-oxnard-web.netlify.app/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition underline">JS Web Services</a>
             </p>
