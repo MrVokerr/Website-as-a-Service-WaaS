@@ -20,7 +20,7 @@ import {
 const businessDetails = {
   name: "Phil's Gardening | Landscaping",
   tagline: "Expert Landscaping & Garden Care in Oxnard",
-  phone: "(805) 368-6536",
+  phone: "+1 (805) 368-6536",
   email: "philsgardenservices2@gmail.com",
   address: "1324 Evita Pl, Oxnard, CA 93030",
   hours: "Open 24 Hours",
