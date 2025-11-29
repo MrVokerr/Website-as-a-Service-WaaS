@@ -19,7 +19,7 @@ import {
 */
 const businessDetails = {
   name: "Phil's Gardening | Landscaping",
-  tagline: "Expert Landscaping & Garden Care in Oxnard",
+  tagline: "Exceptional Landscaping Services in Oxnard, California",
   phone: "+1 (805) 368-6536",
   email: "philsgardenservices2@gmail.com",
   address: "1324 Evita Pl, Oxnard, CA 93030",
@@ -29,8 +29,8 @@ const businessDetails = {
   heroImage: "https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&q=80&w=1920", // Manicured garden/lawn
   services: [
     {
-      title: "Landscape Design",
-      desc: "Transform your outdoor space with custom garden layouts, planting schemes, and hardscaping.",
+      title: "Garden Design",
+      desc: "Transform your outdoor space with custom garden layouts, vibrant flower beds, and planting schemes.",
       icon: <TreePine className="w-12 h-12 text-white" />
     },
     {
@@ -39,8 +39,8 @@ const businessDetails = {
       icon: <Flower2 className="w-12 h-12 text-white" />
     },
     {
-      title: "Yard Cleanup",
-      desc: "Complete property restoration including weed removal, pruning, and green waste hauling.",
+      title: "Irrigation Solutions",
+      desc: "Installation of efficient watering systems and sustainable practices to benefit both clients and the planet.",
       icon: <Shovel className="w-12 h-12 text-white" />
     }
   ],
@@ -201,9 +201,9 @@ const App = () => {
                 <p className="text-gray-600 leading-relaxed">
                   {service.desc}
                 </p>
-                <button className="mt-6 flex items-center text-sm font-bold hover:underline" style={{ color: businessDetails.primaryColor }}>
-                  Learn More <ArrowRight className="w-4 h-4 ml-1" />
-                </button>
+                <a href="#contact" className="mt-6 flex items-center text-sm font-bold hover:underline" style={{ color: businessDetails.primaryColor }}>
+                  Get a Quote <ArrowRight className="w-4 h-4 ml-1" />
+                </a>
               </div>
             ))}
           </div>
@@ -233,17 +233,20 @@ const App = () => {
             
             <div className="md:w-1/2">
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
-                Your Local Landscaping Experts
+                Our Story
               </h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                Located right on Evita Pl, we are proud to serve our Oxnard community. We understand the local climate and soil conditions, ensuring your garden thrives in the coastal air.
+                Experienced, qualified, and certified, Phil's Gardening Services has set itself apart as the area's leading local landscaper. Ours is a business founded on a simple premise: To give excellent service at a fair price.
+              </p>
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                Located at 1324 Evita Pl, we have built a strong reputation within the Oxnard community. From planting vibrant flower beds to installing efficient watering systems, we transform ordinary yards into stunning landscapes using sustainable practices that benefit both clients and the planet.
               </p>
               <ul className="space-y-4 mb-8">
                 {[
-                  "Available 24 Hours a Day",
-                  "Professional & Reliable Team",
+                  "Commitment to Quality & Sustainability",
                   "Residential & Commercial Services",
-                  "Free On-Site Estimates"
+                  "Attention to Detail & Customer Satisfaction",
+                  "Free Estimates - Call Today!"
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-gray-700">
                     <CheckCircle className="w-5 h-5 text-green-600" />
