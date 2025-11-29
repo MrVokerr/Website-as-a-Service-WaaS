@@ -54,6 +54,8 @@ const businessDetails = {
 
 const App = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [formError, setFormError] = useState("");
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -63,8 +65,64 @@ const App = () => {
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormError("");
+    const formData = new FormData(e.target);
+    const contactValue = formData.get('contact');
+
+    // Validation Logic
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneDigits = contactValue.replace(/\D/g, '');
+    const isPhone = phoneDigits.length >= 10 && phoneDigits.length <= 11;
+
+    if (!emailRegex.test(contactValue) && !isPhone) {
+      setFormError("Please enter a valid email address or phone number (10-11 digits).");
+      return;
+    }
+    
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString(),
+    })
+      .then(() => {
+        setShowSuccess(true);
+        e.target.reset();
+      })
+      .catch((error) => alert(error));
+  };
+
   return (
     <div className="min-h-screen font-sans text-gray-800 bg-white">
+      
+      {/* --- SUCCESS POPUP --- */}
+      {showSuccess && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 bg-black/50 backdrop-blur-sm animate-fade-in">
+          <div className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl text-center relative animate-scale-up">
+            <button 
+              onClick={() => setShowSuccess(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+            >
+              <X className="w-6 h-6" />
+            </button>
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <CheckCircle className="w-8 h-8 text-green-600" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h3>
+            <p className="text-gray-600 mb-6">
+              Your message was sent successfully. We will be in contact shortly about your quote.
+            </p>
+            <button 
+              onClick={() => setShowSuccess(false)}
+              className="w-full py-3 rounded-lg font-bold text-white transition hover:brightness-110"
+              style={{ backgroundColor: businessDetails.primaryColor }}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
       
       {/* --- HEADER --- */}
       <header className="sticky top-0 z-50 bg-white shadow-md">
@@ -408,15 +466,22 @@ const App = () => {
             {/* Contact Form */}
             <div className="bg-gray-800 p-8 rounded-2xl shadow-xl">
               <h3 className="text-2xl font-bold mb-6 text-white">Get a Free Quote</h3>
-              <form name="contact" method="POST" data-netlify="true" className="space-y-4">
+              <form 
+                name="contact" 
+                method="POST" 
+                data-netlify="true" 
+                className="space-y-4"
+                onSubmit={handleSubmit}
+              >
                 <input type="hidden" name="form-name" value="contact" />
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-1">Name</label>
                   <input type="text" name="name" id="name" required className="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:border-green-500 transition" placeholder="Your Name" />
                 </div>
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-400 mb-1">Phone</label>
-                  <input type="tel" name="phone" id="phone" required className="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:border-green-500 transition" placeholder="Your Phone Number" />
+                  <label htmlFor="contact" className="block text-sm font-medium text-gray-400 mb-1">Phone or Email</label>
+                  <input type="text" name="contact" id="contact" required className="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:border-green-500 transition" placeholder="Your Phone or Email" />
+                  {formError && <p className="text-red-400 text-sm mt-1">{formError}</p>}
                 </div>
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-1">Message</label>
@@ -430,7 +495,10 @@ const App = () => {
           </div>
           
           <div className="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
-            <p>&copy; 2025 {businessDetails.name}. All rights reserved.</p>
+            <p className="mb-2">&copy; 2025 {businessDetails.name}. All rights reserved.</p>
+            <p>
+              Website created by <a href="https://js-oxnard-web.netlify.app/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition underline">JS Web Services</a>
+            </p>
           </div>
         </div>
       </footer>
