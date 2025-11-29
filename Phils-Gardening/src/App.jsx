@@ -242,7 +242,7 @@ const App = () => {
       </section>
 
       {/* --- SERVICES SECTION --- */}
-      <section id="services" className="py-20 bg-gray-50">
+      <section id="services" className="py-20 bg-gray-50 scroll-mt-24">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Our Services</h2>
@@ -272,7 +272,7 @@ const App = () => {
       </section>
 
       {/* --- ABOUT / LOCAL SECTION --- */}
-      <section id="about" className="py-20">
+      <section id="about" className="py-20 scroll-mt-24">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="md:w-1/2">
@@ -328,7 +328,7 @@ const App = () => {
       </section>
 
       {/* --- TESTIMONIALS --- */}
-      <section id="reviews" className="py-20" style={{ backgroundColor: businessDetails.accentColor }}>
+      <section id="reviews" className="py-20 scroll-mt-24" style={{ backgroundColor: businessDetails.accentColor }}>
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto bg-white rounded-3xl p-10 shadow-lg text-center">
             <div className="flex justify-center gap-1 mb-6">
@@ -348,7 +348,7 @@ const App = () => {
       </section>
 
       {/* --- CONTACT INFO SECTION --- */}
-      <section id="contact-info" className="py-20 bg-white">
+      <section id="contact-info" className="py-20 bg-white scroll-mt-24">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-gray-900">Contact Information</h2>
           
@@ -413,7 +413,7 @@ const App = () => {
       </section>
 
       {/* --- FOOTER --- */}
-      <footer id="contact" className="bg-gray-900 text-white py-16">
+      <footer id="contact" className="bg-gray-900 text-white py-16 scroll-mt-24">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 mb-12">
             {/* Contact Info */}
