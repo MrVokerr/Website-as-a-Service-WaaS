@@ -21,6 +21,7 @@ const businessDetails = {
   name: "Phil's Gardening | Landscaping",
   tagline: "Exceptional Landscaping Services in Oxnard, California",
   phone: "+1 (805) 368-6536",
+  cleanPhone: "+18053686536",
   email: "philsgardenservices2@gmail.com",
   address: "1324 Evita Pl, Oxnard, CA 93030",
   hours: "Open 24 Hours",
@@ -92,12 +93,13 @@ const App = () => {
               <button onClick={() => scrollToSection('services')} className="hover:text-green-700 transition">Services</button>
               <button onClick={() => scrollToSection('about')} className="hover:text-green-700 transition">About Us</button>
               <button onClick={() => scrollToSection('reviews')} className="hover:text-green-700 transition">Reviews</button>
+              <button onClick={() => scrollToSection('contact-info')} className="hover:text-green-700 transition">Contact</button>
             </nav>
 
             {/* CTA Button */}
             <div className="hidden md:block">
               <a 
-                href={`tel:${businessDetails.phone}`}
+                href={`tel:${businessDetails.cleanPhone}`}
                 className="flex items-center gap-2 px-6 py-3 rounded-full font-bold text-white transition transform hover:scale-105 shadow-lg"
                 style={{ backgroundColor: businessDetails.primaryColor }}
               >
@@ -123,8 +125,9 @@ const App = () => {
               <button onClick={() => scrollToSection('services')} className="py-2">Services</button>
               <button onClick={() => scrollToSection('about')} className="py-2">About Us</button>
               <button onClick={() => scrollToSection('reviews')} className="py-2">Reviews</button>
+              <button onClick={() => scrollToSection('contact-info')} className="py-2">Contact</button>
               <a 
-                href={`tel:${businessDetails.phone}`}
+                href={`tel:${businessDetails.cleanPhone}`}
                 className="py-3 rounded-lg font-bold text-white justify-center flex items-center gap-2"
                 style={{ backgroundColor: businessDetails.primaryColor }}
               >
@@ -171,7 +174,7 @@ const App = () => {
               Get a Free Quote
             </button>
             <a 
-              href={`tel:${businessDetails.phone}`}
+              href={`tel:${businessDetails.cleanPhone}`}
               className="px-8 py-4 text-lg font-bold rounded-lg bg-white text-gray-900 shadow-xl hover:bg-gray-100 transition"
             >
               {businessDetails.phone}
@@ -286,10 +289,76 @@ const App = () => {
         </div>
       </section>
 
+      {/* --- CONTACT INFO SECTION --- */}
+      <section id="contact-info" className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-gray-900">Contact Information</h2>
+          
+          <div className="grid md:grid-cols-2 gap-12 items-start max-w-6xl mx-auto">
+            {/* Left Column: Info */}
+            <div className="space-y-8">
+              {/* Phone */}
+              <div className="flex gap-4">
+                <Phone className="w-6 h-6 mt-1 shrink-0 text-gray-400" />
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-1">Phone</h3>
+                  <a href={`tel:${businessDetails.cleanPhone}`} className="text-lg font-semibold hover:text-green-700 transition">
+                    {businessDetails.phone}
+                  </a>
+                </div>
+              </div>
+
+              {/* Address */}
+              <div className="flex gap-4">
+                <MapPin className="w-6 h-6 mt-1 shrink-0 text-gray-400" />
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-1">Address</h3>
+                  <p className="text-lg font-semibold text-gray-800">
+                    {businessDetails.address}
+                  </p>
+                </div>
+              </div>
+
+              {/* Hours */}
+              <div className="flex gap-4">
+                <Clock className="w-6 h-6 mt-1 shrink-0 text-gray-400" />
+                <div className="w-full">
+                  <h3 className="font-bold text-gray-900 mb-3">Business Hours</h3>
+                  <div className="space-y-2">
+                    {['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].map((day) => (
+                      <div key={day} className="flex justify-between text-sm md:text-base border-b border-gray-100 pb-1 last:border-0">
+                        <span className="font-medium text-gray-700">{day}</span>
+                        <span className="font-bold text-gray-900">Open 24 Hours</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Map */}
+            <div className="h-[400px] w-full rounded-2xl overflow-hidden shadow-lg border border-gray-200 relative bg-gray-100">
+              <iframe 
+                width="100%" 
+                height="100%" 
+                frameBorder="0" 
+                scrolling="no" 
+                marginHeight="0" 
+                marginWidth="0" 
+                src="https://maps.google.com/maps?q=1324+Evita+Pl,+Oxnard,+CA+93030&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                title="Phil's Gardening Location"
+                className="absolute inset-0"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* --- FOOTER --- */}
       <footer id="contact" className="bg-gray-900 text-white py-16">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-12 mb-12">
+          <div className="grid md:grid-cols-2 gap-12 mb-12">
+            {/* Contact Info */}
             <div>
               <div className="flex items-center gap-2 mb-6">
                 <div 
@@ -300,40 +369,63 @@ const App = () => {
                 </div>
                 <span className="text-xl font-bold">{businessDetails.name}</span>
               </div>
-              <p className="text-gray-400 mb-6">
+              <p className="text-gray-400 mb-8">
                 Professional, reliable landscaping services for the entire Oxnard community. 
               </p>
-            </div>
-            
-            <div>
-              <h4 className="text-lg font-bold mb-6 text-white">Contact Info</h4>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3 text-gray-300">
-                  <MapPin className="w-5 h-5 mt-1 shrink-0" />
-                  <span>{businessDetails.address}</span>
+
+              <div className="space-y-6">
+                <div className="flex items-start gap-4 text-gray-300">
+                  <MapPin className="w-6 h-6 mt-1 shrink-0 text-green-500" />
+                  <div>
+                    <h5 className="font-bold text-white">Address</h5>
+                    <span>{businessDetails.address}</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3 text-gray-300">
-                  <Phone className="w-5 h-5 shrink-0" />
-                  <a href={`tel:${businessDetails.phone}`} className="hover:text-white transition">{businessDetails.phone}</a>
+                <div className="flex items-start gap-4 text-gray-300">
+                  <Phone className="w-6 h-6 mt-1 shrink-0 text-green-500" />
+                  <div>
+                    <h5 className="font-bold text-white">Phone</h5>
+                    <a href={`tel:${businessDetails.cleanPhone}`} className="hover:text-white transition">{businessDetails.phone}</a>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3 text-gray-300">
-                  <Mail className="w-5 h-5 shrink-0" />
-                  <a href={`mailto:${businessDetails.email}`} className="hover:text-white transition break-all">{businessDetails.email}</a>
+                <div className="flex items-start gap-4 text-gray-300">
+                  <Mail className="w-6 h-6 mt-1 shrink-0 text-green-500" />
+                  <div>
+                    <h5 className="font-bold text-white">Email</h5>
+                    <a href={`mailto:${businessDetails.email}`} className="hover:text-white transition break-all">{businessDetails.email}</a>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4 text-gray-300">
+                  <Clock className="w-6 h-6 mt-1 shrink-0 text-green-500" />
+                  <div>
+                    <h5 className="font-bold text-white">Hours</h5>
+                    <span>{businessDetails.hours}</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div>
-              <h4 className="text-lg font-bold mb-6 text-white">Business Hours</h4>
-              <ul className="space-y-2 text-gray-300">
-                <li className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-green-400" />
-                  <span className="font-semibold text-white">{businessDetails.hours}</span>
-                </li>
-                <li className="text-sm text-gray-400 mt-2">
-                  Available for emergency services and scheduled maintenance.
-                </li>
-              </ul>
+            {/* Contact Form */}
+            <div className="bg-gray-800 p-8 rounded-2xl shadow-xl">
+              <h3 className="text-2xl font-bold mb-6 text-white">Get a Free Quote</h3>
+              <form name="contact" method="POST" data-netlify="true" className="space-y-4">
+                <input type="hidden" name="form-name" value="contact" />
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-1">Name</label>
+                  <input type="text" name="name" id="name" required className="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:border-green-500 transition" placeholder="Your Name" />
+                </div>
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-400 mb-1">Phone</label>
+                  <input type="tel" name="phone" id="phone" required className="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:border-green-500 transition" placeholder="Your Phone Number" />
+                </div>
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-1">Message</label>
+                  <textarea name="message" id="message" rows="4" required className="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:border-green-500 transition" placeholder="How can we help you?"></textarea>
+                </div>
+                <button type="submit" className="w-full py-4 rounded-lg font-bold text-white shadow-lg hover:brightness-110 transition" style={{ backgroundColor: businessDetails.primaryColor }}>
+                  Send Message
+                </button>
+              </form>
             </div>
           </div>
           
