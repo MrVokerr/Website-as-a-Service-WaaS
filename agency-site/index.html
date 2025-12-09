@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Web Services | Future-Ready Digital Solutions</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['Space Grotesk', 'monospace'],
+                    },
+                    colors: {
+                        dark: '#0a0a0a',
+                        card: '#171717',
+                        accent: '#3b82f6', // Blue
+                        glow: '#60a5fa',
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        .glass-nav {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(0,0,0,0) 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .card-hover {
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            border-color: rgba(96, 165, 250, 0.3);
+            box-shadow: 0 20px 40px -15px rgba(59, 130, 246, 0.2);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-mono font-bold tracking-tighter flex items-center gap-2">
+                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                    <span class="text-white text-lg">JS</span>
+                </div>
+                <span class="hidden sm:block">Web Services</span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8 font-medium text-gray-400">
+                <a href="#services" class="hover:text-white transition-colors">Services</a>
+                <a href="#work" class="hover:text-white transition-colors">Work</a>
+                <a href="#process" class="hover:text-white transition-colors">Process</a>
+            </div>
+
+            <a href="#contact" class="px-6 py-2.5 bg-white text-black font-bold rounded-full hover:bg-blue-50 transition-colors text-sm">
+                Start Project
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="hero-glow animate-pulse"></div>
+        
+        <div class="max-w-5xl mx-auto px-6 text-center z-10">
+            <div class="inline-block mb-6 px-4 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-sm font-mono tracking-wide opacity-0" id="hero-badge">
+                NEXT GEN WEB DEVELOPMENT
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8 tracking-tight">
+                <span class="block opacity-0 translate-y-10 hero-text">Crafting Digital</span>
+                <span class="block gradient-text opacity-0 translate-y-10 hero-text">Masterpieces</span>
+            </h1>
+            
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-12 opacity-0 translate-y-10 hero-text leading-relaxed">
+                We build high-performance websites that blend stunning aesthetics with rock-solid engineering. Elevate your brand today.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center opacity-0 translate-y-10 hero-text">
+                <a href="#work" class="px-8 py-4 bg-blue-600 text-white rounded-full font-bold text-lg hover:bg-blue-700 transition-all hover:scale-105 flex items-center justify-center gap-2">
+                    View Our Work <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+                <a href="#contact" class="px-8 py-4 bg-transparent border border-gray-700 text-white rounded-full font-bold text-lg hover:border-white transition-all flex items-center justify-center">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+
+        <!-- Abstract Background Elements -->
+        <div class="absolute top-1/4 left-10 w-24 h-24 border border-gray-800 rounded-full opacity-20 animate-spin-slow"></div>
+        <div class="absolute bottom-1/4 right-10 w-32 h-32 border border-gray-800 rounded-full opacity-20 animate-bounce"></div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-32 bg-dark relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 service-title opacity-0 translate-y-10">Our Expertise</h2>
+                <div class="h-1 w-20 bg-blue-600 rounded-full service-line opacity-0 scale-x-0 origin-left"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-card p-8 rounded-3xl card-hover service-card opacity-0 translate-y-10">
+                    <div class="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-500 mb-8">
+                        <i data-lucide="layout" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">UI/UX Design</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        User-centric interfaces that look beautiful and function flawlessly. We design with purpose and precision.
+                    </p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-card p-8 rounded-3xl card-hover service-card opacity-0 translate-y-10">
+                    <div class="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center text-purple-500 mb-8">
+                        <i data-lucide="code-2" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Development</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Clean, modern code using the latest frameworks. Fast, secure, and scalable solutions for any business size.
+                    </p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-card p-8 rounded-3xl card-hover service-card opacity-0 translate-y-10">
+                    <div class="w-14 h-14 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 mb-8">
+                        <i data-lucide="rocket" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Growth & SEO</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Strategies to get you seen. We optimize every pixel to ensure high ranking and maximum conversion.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 border-y border-gray-900 bg-black/50">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+            <div class="stat-item">
+                <div class="text-4xl md:text-5xl font-mono font-bold text-white mb-2">50+</div>
+                <div class="text-gray-500 text-sm uppercase tracking-widest">Projects</div>
+            </div>
+            <div class="stat-item">
+                <div class="text-4xl md:text-5xl font-mono font-bold text-white mb-2">100%</div>
+                <div class="text-gray-500 text-sm uppercase tracking-widest">Satisfaction</div>
+            </div>
+            <div class="stat-item">
+                <div class="text-4xl md:text-5xl font-mono font-bold text-white mb-2">24/7</div>
+                <div class="text-gray-500 text-sm uppercase tracking-widest">Support</div>
+            </div>
+            <div class="stat-item">
+                <div class="text-4xl md:text-5xl font-mono font-bold text-white mb-2">5yr</div>
+                <div class="text-gray-500 text-sm uppercase tracking-widest">Experience</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section id="work" class="py-32 bg-black relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 work-title opacity-0 translate-y-10">Featured Work</h2>
+                <div class="h-1 w-20 bg-blue-600 rounded-full work-line opacity-0 scale-x-0 origin-left"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Project 1: Paws-N-Style -->
+                <a href="https://paws-n-style.netlify.app/" target="_blank" class="group block bg-card rounded-3xl overflow-hidden border border-gray-800 hover:border-blue-500/50 transition-all duration-500 work-card opacity-0 translate-y-10">
+                    <div class="relative h-64 overflow-hidden">
+                        <div class="absolute inset-0 bg-blue-600/10 group-hover:bg-transparent transition-colors z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?q=80&w=2071&auto=format&fit=crop" alt="Paws-N-Style" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-2 group-hover:text-blue-400 transition-colors">Paws-N-Style</h3>
+                        <p class="text-gray-400 mb-4">Professional pet grooming services in Oxnard, CA. Bathing, haircuts, and special care.</p>
+                        <div class="flex items-center text-blue-500 font-bold text-sm">
+                            VIEW PROJECT <i data-lucide="arrow-up-right" class="w-4 h-4 ml-2"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Project 2: Channel Welding -->
+                <a href="https://channel-welding.netlify.app" target="_blank" class="group block bg-card rounded-3xl overflow-hidden border border-gray-800 hover:border-blue-500/50 transition-all duration-500 work-card opacity-0 translate-y-10">
+                    <div class="relative h-64 overflow-hidden">
+                        <div class="absolute inset-0 bg-blue-600/10 group-hover:bg-transparent transition-colors z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=1920" alt="Channel Welding" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-2 group-hover:text-blue-400 transition-colors">Channel Welding</h3>
+                        <p class="text-gray-400 mb-4">LA Approved Structural Steel & Certified Welding. Industrial fabrication and repair.</p>
+                        <div class="flex items-center text-blue-500 font-bold text-sm">
+                            VIEW PROJECT <i data-lucide="arrow-up-right" class="w-4 h-4 ml-2"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Project 3: Phil's Gardening -->
+                <a href="https://phils-gardening.netlify.app" target="_blank" class="group block bg-card rounded-3xl overflow-hidden border border-gray-800 hover:border-blue-500/50 transition-all duration-500 work-card opacity-0 translate-y-10">
+                    <div class="relative h-64 overflow-hidden">
+                        <div class="absolute inset-0 bg-blue-600/10 group-hover:bg-transparent transition-colors z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&q=80&w=1920" alt="Phil's Gardening" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-2 group-hover:text-blue-400 transition-colors">Phil's Gardening</h3>
+                        <p class="text-gray-400 mb-4">Exceptional Landscaping Services in Oxnard. Lawn care, design, and maintenance.</p>
+                        <div class="flex items-center text-blue-500 font-bold text-sm">
+                            VIEW PROJECT <i data-lucide="arrow-up-right" class="w-4 h-4 ml-2"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Project 4: Haulin Handyman -->
+                <a href="https://haulin-handyman.netlify.app" target="_blank" class="group block bg-card rounded-3xl overflow-hidden border border-gray-800 hover:border-blue-500/50 transition-all duration-500 work-card opacity-0 translate-y-10">
+                    <div class="relative h-64 overflow-hidden">
+                        <div class="absolute inset-0 bg-blue-600/10 group-hover:bg-transparent transition-colors z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1920" alt="Haulin Handyman" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-2 group-hover:text-blue-400 transition-colors">Haulin Handyman</h3>
+                        <p class="text-gray-400 mb-4">Expert Home Repairs, Moving & Remodeling. Professional handyman services.</p>
+                        <div class="flex items-center text-blue-500 font-bold text-sm">
+                            VIEW PROJECT <i data-lucide="arrow-up-right" class="w-4 h-4 ml-2"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-900/10 to-transparent pointer-events-none"></div>
+        
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <div class="bg-card rounded-[3rem] p-8 md:p-16 border border-gray-800 shadow-2xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-4">Let's Build Something Great</h2>
+                    <p class="text-gray-400">Ready to start? Send us a message and let's talk.</p>
+                </div>
+
+                <form class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-sm font-mono text-gray-500 ml-2">NAME</label>
+                            <input type="text" class="w-full bg-dark border border-gray-800 rounded-xl px-6 py-4 text-white focus:border-blue-500 focus:outline-none transition-colors" placeholder="John Doe">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-mono text-gray-500 ml-2">EMAIL</label>
+                            <input type="email" class="w-full bg-dark border border-gray-800 rounded-xl px-6 py-4 text-white focus:border-blue-500 focus:outline-none transition-colors" placeholder="john@example.com">
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <label class="text-sm font-mono text-gray-500 ml-2">MESSAGE</label>
+                        <textarea rows="4" class="w-full bg-dark border border-gray-800 rounded-xl px-6 py-4 text-white focus:border-blue-500 focus:outline-none transition-colors" placeholder="Tell us about your project..."></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-white text-black font-bold py-5 rounded-xl hover:bg-blue-50 transition-all transform hover:-translate-y-1">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-900 text-center text-gray-600 text-sm">
+        <p>&copy; 2025 JS Web Services. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Animation
+        const tl = gsap.timeline();
+        
+        tl.to("#hero-badge", { opacity: 1, duration: 0.8, ease: "power3.out" })
+          .to(".hero-text", { 
+              opacity: 1, 
+              y: 0, 
+              duration: 1, 
+              stagger: 0.2, 
+              ease: "power3.out" 
+          }, "-=0.4");
+
+        // Services Animation
+        gsap.to(".service-title", {
+            scrollTrigger: {
+                trigger: "#services",
+                start: "top 80%",
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        });
+
+        gsap.to(".service-line", {
+            scrollTrigger: {
+                trigger: "#services",
+                start: "top 80%",
+            },
+            scaleX: 1,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+            delay: 0.2
+        });
+
+        gsap.to(".service-card", {
+            scrollTrigger: {
+                trigger: "#services",
+                start: "top 75%",
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
+
+        // Work Animation
+        gsap.to(".work-title", {
+            scrollTrigger: {
+                trigger: "#work",
+                start: "top 80%",
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        });
+
+        gsap.to(".work-line", {
+            scrollTrigger: {
+                trigger: "#work",
+                start: "top 80%",
+            },
+            scaleX: 1,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+            delay: 0.2
+        });
+
+        gsap.to(".work-card", {
+            scrollTrigger: {
+                trigger: "#work",
+                start: "top 75%",
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2');
+                nav.classList.remove('py-4');
+            } else {
+                nav.classList.add('py-4');
+                nav.classList.remove('py-2');
+            }
+        });
+    </script>
+</body>
+</html>
