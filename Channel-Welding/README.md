@@ -1,4 +1,6 @@
-# Phil's Gardening - WaaS Template
+# Channel Welding - WaaS Template
+
+Live site: https://channel-welding.netlify.app/
 
 This is a complete, responsive, single-page React website designed for local service businesses (Landscaping, Plumbing, HVAC, etc.). It is set up for deployment on Netlify with built-in form handling.
 

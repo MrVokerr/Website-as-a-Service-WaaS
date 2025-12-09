@@ -1,4 +1,6 @@
-# Phil's Gardening - WaaS Template
+# Haulin Handyman - WaaS Template
+
+Live site: https://haulin-handyman.netlify.app/
 
 This is a complete, responsive, single-page React website designed for local service businesses (Landscaping, Plumbing, HVAC, etc.). It is set up for deployment on Netlify with built-in form handling.
 
